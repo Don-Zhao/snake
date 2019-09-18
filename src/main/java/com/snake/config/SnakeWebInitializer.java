@@ -22,7 +22,7 @@ public class SnakeWebInitializer extends AbstractAnnotationConfigDispatcherServl
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return null;
+		return new Class[] {SnakeRootConfig.class};
 	}
 
 	@Override
