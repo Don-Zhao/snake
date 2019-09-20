@@ -1,8 +1,6 @@
-body {
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-.pull-center {
-	text-align: center;
+.login-container {
+	width: 30%; 
+	background-color: silver; 
+	height: 300px; 
+	margin-top: 100px;
 }
