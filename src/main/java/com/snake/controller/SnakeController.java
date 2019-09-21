@@ -28,6 +28,12 @@ public class SnakeController {
 		return "login";
 	}
 	
+	@RequestMapping("/path")
+	public String path() {
+		userService.exist(1);
+		return "path";
+	}
+	
 	@RequestMapping("/upload")
 	public String upload(HttpServletRequest request,
 						 @RequestParam("userFile") MultipartFile part) {
@@ -60,8 +66,6 @@ public class SnakeController {
 		}
 		
 		return "login";
-		
-		
 	}
 }
 

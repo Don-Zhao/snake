@@ -4,11 +4,15 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.apache.ibatis.logging.log4j2.Log4j2Impl;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.mysql.jdbc.Driver;
@@ -16,7 +20,9 @@ import com.mysql.jdbc.Driver;
 
 @Configuration
 @MapperScan("com.snake.mapper")
+@EnableCaching
 //@ComponentScan(basePackages= {"com.snake.properties"})
+@EnableTransactionManagement
 public class SnakeRootConfig {
 	
 //	@Autowired
@@ -25,6 +31,7 @@ public class SnakeRootConfig {
 	@Bean
 	public DataSource dataSource() throws SQLException {
 		DruidDataSource dataSource = new DruidDataSource();
+//		SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
 		dataSource.setDriver(new Driver());
 		dataSource.setUrl("jdbc:mysql://localhost:3306/snake");
 		dataSource.setUsername("root");
@@ -41,9 +48,6 @@ public class SnakeRootConfig {
 	public SqlSessionFactoryBean sqlSessionFactory() throws SQLException {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dataSource());
-		org.apache.ibatis.session.Configuration config = new org.apache.ibatis.session.Configuration();
-		config.setLogImpl(Log4j2Impl.class);
-		bean.setConfiguration(config);
 		return bean;
 	}
 	
@@ -54,4 +58,18 @@ public class SnakeRootConfig {
 //		
 //		return configurger;
 //	}
+	
+	@Bean
+	public CacheManager cacheManager() {
+		SimpleCacheManager manager = new SimpleCacheManager();
+		return manager;
+	}
+	
+	@Bean
+	public DataSourceTransactionManager transactionManager() throws SQLException {
+		DataSourceTransactionManager manager = new DataSourceTransactionManager();
+		manager.setDataSource(dataSource());
+		
+		return manager;
+	}
 }

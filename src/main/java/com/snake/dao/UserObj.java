@@ -1,7 +1,11 @@
 package com.snake.dao;
 
-public class UserObj {
-	
+import java.io.Serializable;
+
+public class UserObj implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	
 	private String name;
