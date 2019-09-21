@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.logging.log4j2.Log4j2Impl;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +41,9 @@ public class SnakeRootConfig {
 	public SqlSessionFactoryBean sqlSessionFactory() throws SQLException {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dataSource());
+		org.apache.ibatis.session.Configuration config = new org.apache.ibatis.session.Configuration();
+		config.setLogImpl(Log4j2Impl.class);
+		bean.setConfiguration(config);
 		return bean;
 	}
 	

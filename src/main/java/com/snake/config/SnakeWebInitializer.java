@@ -1,5 +1,8 @@
 package com.snake.config;
 
+import javax.servlet.ServletRegistration.Dynamic;
+
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 //public class SnakeWebInitializer implements WebApplicationInitializer {
@@ -34,4 +37,5 @@ public class SnakeWebInitializer extends AbstractAnnotationConfigDispatcherServl
 	protected String[] getServletMappings() {
 		return new String[] {"/"};
 	}
+	
 }
