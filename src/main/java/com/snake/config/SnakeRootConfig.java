@@ -15,7 +15,11 @@ import com.mysql.jdbc.Driver;
 
 @Configuration
 @MapperScan("com.snake.mapper")
+//@ComponentScan(basePackages= {"com.snake.properties"})
 public class SnakeRootConfig {
+	
+//	@Autowired
+//	private MySqlProperties properties;
 	
 	@Bean
 	public DataSource dataSource() throws SQLException {
@@ -24,6 +28,10 @@ public class SnakeRootConfig {
 		dataSource.setUrl("jdbc:mysql://localhost:3306/snake");
 		dataSource.setUsername("root");
 		dataSource.setPassword("admin");
+//		dataSource.setDriverClassName(properties.getDriver());
+//		dataSource.setUrl(properties.getUrl());
+//		dataSource.setUsername(properties.getUsername());
+//		dataSource.setPassword(properties.getPassword());
 		
 		return dataSource;
 	}
