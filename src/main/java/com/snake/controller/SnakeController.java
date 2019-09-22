@@ -30,7 +30,7 @@ public class SnakeController {
 	
 	@RequestMapping("/path")
 	public String path() {
-		userService.exist(1);
+		userService.exist(4);
 		return "path";
 	}
 	

@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>  
-<Configuration status="info">  
+<Configuration status="info">
     <Appenders>  
         <Console name="console" target="SYSTEM_OUT">  
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}(%F:%L) - %m%n" />  
         </Console>  
     </Appenders>  
-    <Loggers> 
+    <Loggers>
+    	   
+    	<Logger name="com.alibaba.druid.pool.DruidDataSource" level="debug" additivity="false">  
+            <AppenderRef ref="console" />  
+        </Logger>
         <Logger name="com.snake.mapper" level="debug" additivity="false">  
+            <AppenderRef ref="console" />  
+        </Logger>
+        <Logger name="druid.sql.DataSource" level="debug" additivity="false">  
+            <AppenderRef ref="console" />  
+        </Logger>
+        <Logger name="druid.sql.Connection" level="debug" additivity="false">  
+            <AppenderRef ref="console" />  
+        </Logger>
+        <Logger name="druid.sql.Statement" level="debug" additivity="false">  
+            <AppenderRef ref="console" />  
+        </Logger>
+        <Logger name="druid.sql.ResultSet" level="debug" additivity="false">  
             <AppenderRef ref="console" />  
         </Logger>
         
         <Root level="debug">  
             <AppenderRef ref="console" />  
         </Root>
-    </Loggers>  
+    </Loggers> 
 </Configuration>  
